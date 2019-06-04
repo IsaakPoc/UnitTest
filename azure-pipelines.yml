@@ -37,49 +37,15 @@ steps:
     overWrite: true
     flattenFolders: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)
-name: $(BuildID)
- 
-pool:
-  vmImage: 'VS2017-Win2016'
 
-# the variables Major, Minor and Revision also need to be added in AzureDevops (see next section)
-variables: 
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  buildMajor: '$(Major)'
-  buildMinor: '$(Minor)'
-  
+
 steps:
-- task: NuGetToolInstaller@0
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-# The comand RunWixToolsOutofProc=true is for a bug where the build times out at .wxs files
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/property:Major=$(buildMajor);Minor=$(buildMinor);Build=$(Build.BuildNumber);RunWixToolsOutofProc=true'
- 
-# Search for .msi files and publishing them in a specific directory
+- powershell: .\build.ps1
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'Installer\bin\$(buildConfiguration)\en-us\*.msi' 
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-    cleanTargetFolder: true
-    overWrite: true
-    flattenFolders: true
-
+    contents: '**'
+    targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)\UnitTests\bin\Debug' 
-    artifactName: 'Setups'' 
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
     artifactName: 'Setups'
