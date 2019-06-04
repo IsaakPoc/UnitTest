@@ -13,6 +13,8 @@ variables:
   buildMinor: '$(Minor)'
   
 steps:
+- powershell: .\build.ps1
+
 - task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
@@ -37,10 +39,6 @@ steps:
     overWrite: true
     flattenFolders: true
 
-
-
-steps:
-- powershell: .\build.ps1
 - task: CopyFiles@2
   inputs:
     contents: '**'
