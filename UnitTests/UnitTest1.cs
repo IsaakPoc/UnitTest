@@ -28,7 +28,7 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod4()
         {
-            Assert.AreEqual(false, false);
+            Assert.AreEqual(true, false);
         }
 
         [TestMethod]
