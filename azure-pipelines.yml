@@ -31,7 +31,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**''
+    Contents: '**'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
     overWrite: true
