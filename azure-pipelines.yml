@@ -31,9 +31,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '|
-     **/*
-     Installer\bin\$(buildConfiguration)\en-us\*.msi'
+    Contents: |
+    **/*
+     Installer\bin\$(buildConfiguration)\en-us\*.msi
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
     overWrite: true
