@@ -37,11 +37,17 @@ steps:
     overWrite: true
     flattenFolders: true
 
-- task: CopyFiles@2
-  inputs:
-    contents: '**'
-    targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: $(Build.ArtifactStagingDirectory)
     artifactName: 'Setups'
+
+    - task: CopyFiles@2
+  inputs:
+    contents: '**'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: 'Test'
