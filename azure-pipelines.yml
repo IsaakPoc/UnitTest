@@ -31,7 +31,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'Installer\bin\$(buildConfiguration)\en-us\*.msi' 
+    contents:  |
+    Installer\bin\$(buildConfiguration)\en-us\*.msi
+    ** 
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
     overWrite: true
@@ -41,13 +43,3 @@ steps:
   inputs:
     pathtoPublish: $(Build.ArtifactStagingDirectory)
     artifactName: 'Setups'
-
-    - task: CopyFiles@2
-  inputs:
-    contents: '**'
-    targetFolder: $(Build.ArtifactStagingDirectory)
-
-- task: PublishBuildArtifacts@2
-  inputs:
-    pathtoPublish: $(Build.ArtifactStagingDirectory)
-    artifactName: 'Test'
