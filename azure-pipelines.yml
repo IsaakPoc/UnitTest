@@ -30,7 +30,6 @@ steps:
 # Search for .msi files and publishing them in a specific directory
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
