@@ -15,6 +15,11 @@ variables:
 steps:
 - task: NuGetToolInstaller@0
 
+- task: GitVersion@4
+  displayName: 'GitVersion'
+  inputs:
+    updateAssemblyInfo: true
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
@@ -38,7 +43,4 @@ steps:
     pathtoPublish: $(Build.ArtifactStagingDirectory)
     artifactName: 'Setups'
 
-  - task: GitVersion@4
-  displayName: 'GitVersion'
-  inputs:
-    updateAssemblyInfo: true
+  
