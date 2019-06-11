@@ -37,3 +37,8 @@ steps:
   inputs:
     pathtoPublish: $(Build.ArtifactStagingDirectory)
     artifactName: 'Setups'
+
+  - task: GitVersion@4
+  displayName: 'GitVersion'
+  inputs:
+    updateAssemblyInfo: true
