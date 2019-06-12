@@ -1,5 +1,5 @@
 
-name: $(Build.DefinitionName)_$(GitVersion_BuildMetaData) 
+name: $(GitVersion_BuildMetaData) 
 
 pool:
   vmImage: 'VS2017-Win2016'
@@ -29,9 +29,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/property:Major=$(buildMajor);Minor=$(buildMinor);Build=$(Build.BuildNumber);RunWixToolsOutofProc=true'
-
-
-
 
 # Search for .msi files and publishing them in a specific directory
 - task: CopyFiles@2
