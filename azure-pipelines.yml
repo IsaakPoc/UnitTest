@@ -1,8 +1,5 @@
 
-name: $(GitVersion.NuGetVersion).$(GitVersion.MajorMinorPatch)
- 
-
-
+name: $(Build.DefinitionName)_$(GitVersion_InformationalVersion) 
 
 pool:
   vmImage: 'VS2017-Win2016'
@@ -16,6 +13,9 @@ variables:
   buildMinor: '$(Minor)'
   
 steps:
+- task: gittools.gitversion.gitversion-task.GitVersion@4
+  displayName: GitVersion
+
 - task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
@@ -29,11 +29,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/property:Major=$(buildMajor);Minor=$(buildMinor);Build=$(Build.BuildNumber);RunWixToolsOutofProc=true'
-    
-- task: GitVersion@4
-  displayName: 'GitVersion'
-  inputs:
-    updateAssemblyInfo: true
+
+
 
 
 # Search for .msi files and publishing them in a specific directory
