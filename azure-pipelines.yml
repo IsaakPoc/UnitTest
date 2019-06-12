@@ -13,11 +13,7 @@ variables:
   buildMinor: '$(Minor)'
   
 steps:
-- script: echo %Action%%BuildVersion%
-  displayName: 'Set build version'
-  env:
-    Action: '##vso[build.updatebuildnumber]'
-    BuildVersion: $(GitVersion.NuGetVersionV2)
+
 
 - task: GitVersion@4
   displayName: 'GitVersion'
