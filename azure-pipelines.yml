@@ -18,13 +18,6 @@ variables:
 steps:
 - task: NuGetToolInstaller@0
 
-- task: GitVersion@4
-  displayName: 'GitVersion'
-  inputs:
-    updateAssemblyInfo: true
-
- 
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
@@ -36,7 +29,13 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/property:Major=$(buildMajor);Minor=$(buildMinor);Build=$(Build.BuildNumber);RunWixToolsOutofProc=true'
- 
+    
+- task: GitVersion@4
+  displayName: 'GitVersion'
+  inputs:
+    updateAssemblyInfo: true
+
+
 # Search for .msi files and publishing them in a specific directory
 - task: CopyFiles@2
   inputs:
