@@ -1,5 +1,5 @@
 
-name: $(Build.DefinitionName)_$(GitVersion_InformationalVersion) 
+name: $(Build.DefinitionName)_$(GitVersion_BuildMetaData) 
 
 pool:
   vmImage: 'VS2017-Win2016'
@@ -13,7 +13,11 @@ variables:
   buildMinor: '$(Minor)'
   
 steps:
-
+- script: echo %Action%%BuildVersion%
+  displayName: 'Set build version'
+  env:
+    Action: '##vso[build.updatebuildnumber]'
+    BuildVersion: $(GitVersion.NuGetVersionV2)
 
 - task: GitVersion@4
   displayName: 'GitVersion'
