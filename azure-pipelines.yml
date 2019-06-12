@@ -1,5 +1,5 @@
 
-name: $(GitVersion.NuGetVersion)
+name: $(GitVersion.NuGetVersion).$(GitVersion.MajorMinorPatch)
  
 
 
@@ -23,12 +23,8 @@ steps:
   inputs:
     updateAssemblyInfo: true
 
- - script: echo %Action%%BuildVersion%
-  displayName: 'Set build version'
-  env:
-    Action: '##vso[build.updatebuildnumber]'
-    BuildVersion: $(GitVersion.NuGetVersionV2)
-    
+ 
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
