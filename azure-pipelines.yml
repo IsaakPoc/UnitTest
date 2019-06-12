@@ -17,7 +17,6 @@ steps:
   displayName: GitVersion
 
 - task: NuGetToolInstaller@0
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
