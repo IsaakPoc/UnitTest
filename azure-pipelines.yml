@@ -28,7 +28,6 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
 # The comand RunWixToolsOutofProc=true is for a bug where the build times out at .wxs files
 - task: VSBuild@1
   inputs:
