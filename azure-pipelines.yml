@@ -1,6 +1,14 @@
 
 name: $(GitVersion.NuGetVersion)
  
+
+ - script: echo %Action%%BuildVersion%
+  displayName: 'Set build version'
+  env:
+    Action: '##vso[build.updatebuildnumber]'
+    BuildVersion: $(GitVersion.NuGetVersionV2)
+
+    
 pool:
   vmImage: 'VS2017-Win2016'
 
