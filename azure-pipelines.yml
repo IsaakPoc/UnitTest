@@ -1,5 +1,5 @@
 
-name: $(GitVersion_BuildMetaData) 
+name: $(GitVersion_CommitsSinceVersionSource) 
 
 pool:
   vmImage: 'VS2017-Win2016'
